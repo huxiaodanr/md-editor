@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
   const [title, setTitle] = useState<string>('简书编辑器模拟');
   const [content, setContent] = useState<string>('');
+
+  /**
+   * useEffect is similar to componentDidMount & componentDidUpdate
+   * the second parameter is an array of effect dependencies, the callback is executed when title changes
+   */
+  useEffect(() => {
+    document.title = `简书-${title}`;
+  }, [title]);
+
   const onTitltChange = (e: any) => {
     setTitle(e.target.value);
   };
