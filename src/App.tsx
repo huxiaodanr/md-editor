@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import markdownCompiler from './utils/markdown-compiler';
 import './App.css';
 
 function App() {
@@ -19,6 +20,11 @@ function App() {
 
   const onContentChange = (e: any) => {
     setContent(e.target.value);
+  };
+
+  const renderMarkdown = () => {
+    const html = markdownCompiler(content);
+    return <div dangerouslySetInnerHTML={{ __html: html }}></div>;
   };
   return (
     <div className="App">
@@ -44,7 +50,7 @@ function App() {
         </div>
         <div id="previewer" className="previewer">
           <h1 className="previewer-header">{title}</h1>
-          <div className="previewer-content">{content}</div>
+          <div className="previewer-content">{renderMarkdown()}</div>
         </div>
       </div>
     </div>
