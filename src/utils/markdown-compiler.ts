@@ -19,6 +19,7 @@ const renderFont = (html: string) => {
   html = html.replace(/~~(.*)~~/g, '<s>$1</s>');
   return html;
 };
+
 const markdownCompiler = (text: string) => {
   let html = text;
 
