@@ -20,11 +20,16 @@ const renderFont = (html: string) => {
   return html;
 };
 
+const renderImage = (html: string) => {
+  // ![name](url)
+  return html.replace(/!\[(.*)\]\((.*)\)/g, '<img title="$1" src="$2" />');
+};
 const markdownCompiler = (text: string) => {
   let html = text;
 
   html = renderHeader(html);
   html = renderFont(html);
+  html = renderImage(html);
 
   return html;
 };

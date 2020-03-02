@@ -13,12 +13,6 @@ const headerTestTable = [
   ]
 ];
 
-describe.each(headerTestTable)('test h1-h6 headers', (tag, text, html) => {
-  test(`shoule compile ${tag}`, () => {
-    expect(markdowCompile(text)).toEqual(html);
-  });
-});
-
 const fontTestTable = [
   ['*', '*italic*', '<i>italic</i>'],
   ['**', '**strong**', '<b>strong</b>'],
@@ -26,7 +20,17 @@ const fontTestTable = [
   ['~~', '~~delete line~~', '<s>delete line</s>']
 ];
 
-describe.each(fontTestTable)('test font style', (tag, text, html) => {
+const imageTestTable = [
+  [
+    'image',
+    '![](https://upload.jianshu.io/admin_banners/web_images/4894/23ecc55accf5c6a6c9910be966c125853d1f04a5.png?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540)',
+    '<img title="" src="https://upload.jianshu.io/admin_banners/web_images/4894/23ecc55accf5c6a6c9910be966c125853d1f04a5.png?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540" />'
+  ]
+];
+
+const testTable = [...headerTestTable, ...fontTestTable, ...imageTestTable];
+
+describe.each(testTable)('test font style', (tag, text, html) => {
   test(`should compile ${tag}`, () => {
     expect(markdowCompile(text)).toEqual(html);
   });
