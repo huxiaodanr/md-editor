@@ -3,7 +3,7 @@ import markdownCompiler from './utils/markdown-compiler';
 import './App.css';
 
 function App() {
-  const [title, setTitle] = useState<string>('简书编辑器模拟');
+  const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
 
   /**
