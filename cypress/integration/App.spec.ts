@@ -65,4 +65,21 @@ describe('Syntax', () => {
     previewer().find('img');
     previewer().should('not.contain.text', '![');
   });
+  it('should render links', () => {
+    editor().type('[百度](https://www.baidu.com)');
+    previewer().contains('a', '百度');
+  });
+  it('should render list', () => {
+    editor()
+      .type('- item1{enter}')
+      .type('- item2');
+    previewer().contains('li', 'item1');
+    previewer().contains('li', 'item2');
+    previewer().should('not.contain.text', '-');
+  });
+  it('should render quote', () => {
+    // TODO: test multi lines quotes
+    editor().type('> quote content');
+    previewer().contains('.quote', 'quote content');
+  });
 });
